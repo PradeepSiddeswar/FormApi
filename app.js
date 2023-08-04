@@ -4,9 +4,9 @@ const dotenv = require("dotenv")
 const router = express.Router()
 const cors = require('cors')
 
-const http = require('http');
+// const http = require('http');
 
-const ipAddress = '192.168.0.105';
+// const ipAddress = '192.168.0.105';
 const app = express()
 const corsOption = {
   origin: ['http://localhost:5000'],
@@ -79,16 +79,16 @@ app.get("/", (req, res) => {
 // ...rest of your server code
 
 //  Replace this with the IP address you want to listen on
-const port = 5000; // Replace this with the desired port number
+// const port = 5000; // Replace this with the desired port number
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello, this is your Node.js server!\n');
-});
+// const server = http.createServer((req, res) => {
+//   res.writeHead(200, { 'Content-Type': 'text/plain' });
+//   res.end('Hello, this is your Node.js server!\n');
+// });
 
-server.listen(port, ipAddress, () => {
-  console.log(`Server running at http://${ipAddress}:${port}/`);
-});
+// server.listen(port, ipAddress, () => {
+//   console.log(`Server running at http://${ipAddress}:${port}/`);
+// });
 
 
 
