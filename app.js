@@ -43,55 +43,17 @@ mongoose.connect(process.env.MONGO_URI, {
 
 
 const formRoute = require('./Routes/form_router')
+const RequirementFromRoute = require('./Routes/RequirementForm_Router')
 
 
 app.get("/", (req, res) => {
     res.send("hello Form Api")
 })
 
-// app.use(cors({
-//     origin: "http://localhost:3000",
-//     methods: ['GET', 'POST'],
-//     allowedHeaders:['Content-Type', 'Authorization'],
-//     credentials: true
-// }));
-
-// const whitelist = ['http://localhost:3000', 'http://localhost:3000/form']
-// const corsOptions = {
-//     origin: function (origin, callback) {
-//        if (whitelist.indexOf(origin) !== -1) {
-//         callback(null, true)
-//        }else {
-//         callback(new Error('Not allowed CORS'))
-//        }
-//     }
-// }
-
-
-
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3001'); // Replace with the allowed origin(s)
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// });
-
-// ...rest of your server code
-
-//  Replace this with the IP address you want to listen on
-// const port = 5000; // Replace this with the desired port number
-
-// const server = http.createServer((req, res) => {
-//   res.writeHead(200, { 'Content-Type': 'text/plain' });
-//   res.end('Hello, this is your Node.js server!\n');
-// });
-
-// server.listen(port, ipAddress, () => {
-//   console.log(`Server running at http://${ipAddress}:${port}/`);
-// });
-
-
 
 app.options('/form', cors()); // Handle preflight requests for a specific route
 app.use(express.json())
+
+app.use(express.static("upload"))
 app.use('/form', formRoute)
+app.use('/requirement-form',RequirementFromRoute)

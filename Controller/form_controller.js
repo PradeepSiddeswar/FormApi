@@ -1,27 +1,28 @@
 const formDB = require("../Model/form_model")
 
 exports.create = async (req, res) => {
-    if(!req.body) {
-        res.status(400).send("Content Connt Be Empty")
-        return
+    if (!req.body) {
+      res.status(400).send("Content Cannot Be Empty");
+      return;
     }
-
- const form  =  new formDB({
-    name: req.body.name,
-    email: req.body.email,
-    mobile: req.body.mobile,
-    message: req.body.message,
- })
- form.save(form)
-     .then(data => {
-        res.status(200).send({status:true, message:"Submitted Successfully",data:data})
-     })
-     .catch(error => {
+  
+    const form = new formDB({
+      name: req.body.name,
+      email: req.body.email,
+      mobile: req.body.mobile,
+      message: req.body.message,
+    });
+  
+    form.save()
+      .then(data => {
+        res.status(200).send({ status: true, message: "Submitted Successfully", data: data });
+      })
+      .catch(error => {
         res.status(500).send({
-            message: error
-        })
-     })
-    }
+          message: error.message || "An error occurred while saving the form data."
+        });
+      });
+  };
 
 // find user 
     exports.find = (req, res) => {
